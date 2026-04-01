@@ -1,0 +1,26 @@
+name: Build Geode Mod
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - name: Windows
+          os: windows-latest
+        - name: Android 64-bit
+          os: ubuntu-latest
+          target: Android
+          arch: arm64
+    runs-on: ${{ matrix.config.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Mod
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          target: ${{ matrix.config.target }}
+          arch: ${{ matrix.config.arch }}
+          combine: true
