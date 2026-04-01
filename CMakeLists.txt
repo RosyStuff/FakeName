@@ -9,5 +9,5 @@ project(yourname.fakename)
 # This adds your mod
 add_geode_mod(
     ${PROJECT_NAME}
-    SOURCES src/main.cpp
+    SOURCES main.cpp
 )
